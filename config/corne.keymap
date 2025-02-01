@@ -1,19 +1,19 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+&mt {
+    flavor = "tap-preferred";
+    tapping_term_ms = <200>;
+};
+
 / {
-    /*
-     * Copyright (c) 2020 The ZMK Contributors
-     *
-     * SPDX-License-Identifier: MIT
-     */
-
-    #include <behaviors.dtsi>
-    #include <dt-bindings/zmk/keys.h>
-    #include <dt-bindings/zmk/bt.h>
-
-    &mt {
-        flavor = "tap-preferred";
-        tapping_term_ms = <200>;
-    };
-
     behaviors {
         th_tap: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
@@ -55,8 +55,7 @@
                 &kp N     &kp M     &kp COMMA &th_tap SEMI COLON &th_tap EXCL QMARK &kp ESC
 
                 // Row 4 (6 keys)
-                &mo 1     &kp LSHIFT &gqt LC(LS(LALT)) SPACE
-                &kp RET   &kp BSPC   &kp DEL
+                &mo 1  &kp LSHIFT &gqt LC(LS(LALT)) &kp SPACE   &kp RET &kp BSPC
             >;
         };
 
@@ -75,28 +74,29 @@
                 &kp MINUS  &kp N7   &kp N8    &kp N9    &kp N0    &trans
 
                 // Row 4 (6 keys)
-                &mo 1      &kp LSHIFT  &kp SPACE
-                &kp RET    &kp BSPC    &mo 2
+                &mo 1      &kp LSHIFT  &kp SPACE   &kp RET    &kp BSPC    &mo 2
             >;
         };
 
         raise_layer {
             bindings = <
-                // Row 1 (12 keys): Put Brightness Up + Volume Up where T/Y would be
-                &kp TAB   &kp LBKT  &kp RBKT  &kp LBRC  &kp RBRC  &kp C_BRI_UP
-                &kp C_VOL_UP &trans &kp UP    &trans    &trans    &bt BT_CLR
+                // Row 1 (12 keys)
+                // T -> C_BRI_UP, Y -> C_VOL_UP
+                &kp TAB   &kp LBKT  &kp RBKT  &kp LBRC   &kp RBRC   &kp C_BRI_UP
+                &kp C_VOL_UP &trans &kp UP   &trans     &trans     &bt BT_CLR
 
-                // Row 2 (12 keys): Put Brightness Down + Volume Down where G/H would be
-                &trans    &trans    &trans    &trans    &trans    &trans
-                &kp C_BRI_DOWN &kp C_VOL_DOWN &kp DOWN &kp RIGHT &trans &bt BT_SEL 0
+                // Row 2 (12 keys)
+                // G -> C_BRI_DOWN, H -> C_VOL_DOWN
+                &trans    &trans    &trans    &trans     &trans     &trans
+                &kp C_BRI_DOWN &kp C_VOL_DOWN &kp DOWN &kp RIGHT  &trans &bt BT_SEL 0
 
-                // Row 3 (12 keys): (unchanged, or remove the old brightness down if you want)
-                &kp LSHFT &trans   &trans    &trans    &trans    &trans
-                &kp C_BRI_DN &trans &kp RBKT  &kp RBRC  &kp PIPE  &bt BT_NXT
+                // Row 3 (12 keys)
+                // Example leftover or extra
+                &kp LSHFT &trans   &trans    &trans     &trans     &trans
+                &kp C_BRI_DN &trans &kp RBKT &kp RBRC   &kp PIPE   &bt BT_NXT
 
                 // Row 4 (6 keys)
-                &kp LGUI  &trans   &kp SPACE
-                &kp RET   &trans   &kp BSPC
+                &kp LGUI  &trans   &kp SPACE  &kp RET    &trans     &kp BSPC
             >;
         };
     };
