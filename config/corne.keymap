@@ -9,19 +9,14 @@
 #include <dt-bindings/zmk/bt.h>
 
 / {
-    // -----------------------------------------------------------
-    // Override the "mt" (global hold-tap) node within the root
-    // -----------------------------------------------------------
-    &mt {
-        flavor = "tap-preferred";
-        tapping_term_ms = <200>;
-    };
-
     behaviors {
+        // Example custom hold-tap behaviors
         th_tap: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
             label = "Home Row Mods";
             #binding-cells = <2>;
+            // Tapping term & flavor set here at 200 ms / "tap-preferred"
+            // If omitted, this node inherits any default from &mt or from ZMK's built-in defaults
             tapping-term-ms = <200>;
             quick-tap-ms = <0>;
             flavor = "tap-preferred";
@@ -59,12 +54,13 @@
 
                 // ---------- Row 4 ----------
                 &mo 1  &kp LSHIFT &kp SPACE
-                // “Hold for nav layer, tap for Enter”
+                // Hold for nav layer, tap for Enter:
                 &lt nav_layer KP_ENTER
                 &kp BSPC &kp DEL
             >;
         };
 
+        // ---------- LOWER LAYER (index 1) ----------
         lower_layer {
             bindings = <
                 &kp TAB    &kp LPAR  &kp RPAR  &kp DQT   &kp PSCRN &kp C_PP
@@ -80,6 +76,7 @@
             >;
         };
 
+        // ---------- RAISE LAYER (index 2) ----------
         raise_layer {
             bindings = <
                 &kp TAB    &kp LBKT &kp RBKT &kp LBRC &kp RBRC &kp F15
@@ -95,6 +92,7 @@
             >;
         };
 
+        // ---------- NAV LAYER (index 3) ----------
         nav_layer {
             bindings = <
                 &kp TAB    &kp LBKT &kp RBKT &kp LBRC &kp RBRC &kp F15
