@@ -9,7 +9,9 @@
 #include <dt-bindings/zmk/bt.h>
 
 / {
-    // Example global config for hold-tap
+    // -----------------------------------------------------------
+    // Override the "mt" (global hold-tap) node within the root
+    // -----------------------------------------------------------
     &mt {
         flavor = "tap-preferred";
         tapping_term_ms = <200>;
@@ -56,14 +58,13 @@
                 &kp N &kp M &kp COMMA &th_tap SEMI COLON &th_tap EXCL QMARK &kp ESC
 
                 // ---------- Row 4 ----------
-                &mo 1  &kp LSHIFT  &kp SPACE
-                // Hold for nav layer, tap for Enter:
+                &mo 1  &kp LSHIFT &kp SPACE
+                // “Hold for nav layer, tap for Enter”
                 &lt nav_layer KP_ENTER
                 &kp BSPC &kp DEL
             >;
         };
 
-        // ---------- LOWER LAYER (index 1) ----------
         lower_layer {
             bindings = <
                 &kp TAB    &kp LPAR  &kp RPAR  &kp DQT   &kp PSCRN &kp C_PP
@@ -79,7 +80,6 @@
             >;
         };
 
-        // ---------- RAISE LAYER (index 2) ----------
         raise_layer {
             bindings = <
                 &kp TAB    &kp LBKT &kp RBKT &kp LBRC &kp RBRC &kp F15
@@ -95,7 +95,6 @@
             >;
         };
 
-        // ---------- NAV LAYER (index 3) ----------
         nav_layer {
             bindings = <
                 &kp TAB    &kp LBKT &kp RBKT &kp LBRC &kp RBRC &kp F15
